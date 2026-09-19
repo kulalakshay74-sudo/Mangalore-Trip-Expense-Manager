@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mangalore Trip Expense Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div><div class="brand">MANGALORE TRIP</div><div class="subbrand">Shared Expense Manager</div></div>
+  <div class="top-actions">
+    <span id="connectionBadge" class="badge">Connecting…</span>
+    <button id="adminLoginBtn" class="btn ghost">Admin Login</button>
+    <button id="adminLogoutBtn" class="btn danger hidden">Logout</button>
+  </div>
+</header>
+<main class="container">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">GROUP TRIP • LIVE DASHBOARD</p>
+      <h1>Mangalore Trip</h1>
+      <p>1 October → 2 October</p>
+      <p class="muted">Everyone can view the latest information. Only the admin can change members, payments and expenses.</p>
+    </div>
+    <div class="hero-actions"><button class="btn" id="refreshBtn">↻ Refresh</button><button class="btn" id="shareBtn">Share</button><button class="btn" id="printBtn">Print / PDF</button></div>
+  </section>
+  <section class="cards" id="summaryCards"></section>
+  <section class="panel">
+    <div class="panel-head"><div><h2>Members & Contributions</h2><p class="muted">Read-only for normal visitors.</p></div>
+      <div class="controls"><input id="memberSearch" placeholder="Search member…"><select id="statusFilter"><option value="all">All</option><option value="full">Fully Paid</option><option value="partial">Partial</option><option value="unpaid">Unpaid</option></select><button id="addMemberBtn" class="btn primary admin-only hidden">+ Add Member</button></div>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>#</th><th>Name</th><th>Group</th><th>Expected</th><th>Paid</th><th>Pending</th><th>Status</th><th class="admin-col">Actions</th></tr></thead><tbody id="membersBody"></tbody></table></div>
+  </section>
+  <section class="grid2">
+    <div class="panel"><div class="panel-head"><div><h2>Expenses</h2><p class="muted">Trip costs recorded by the admin.</p></div><button id="addExpenseBtn" class="btn primary admin-only hidden">+ Add Expense</button></div><div id="expensesList"></div></div>
+    <div class="panel"><h2>Collection Progress</h2><div class="progress-box"><div class="progress-label"><span>Received</span><strong id="progressText">0%</strong></div><div class="progress"><span id="progressBar"></span></div><div class="stats-line"><span>Total expected</span><strong id="expectedText">₹0</strong></div><div class="stats-line"><span>Received</span><strong id="receivedText">₹0</strong></div><div class="stats-line"><span>Pending</span><strong id="pendingText">₹0</strong></div><div class="stats-line"><span>Expenses</span><strong id="expenseText">₹0</strong></div><div class="stats-line"><span>Balance after expenses</span><strong id="balanceText">₹0</strong></div></div></div>
+  </section>
+</main>
+<div id="toast" class="toast"></div>
+<div id="loginModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="loginModal">×</button><p class="eyebrow">ADMIN ONLY</p><h2>Admin Login</h2><p class="muted">Normal users do not need to log in. Admin login is required for all changes.</p><label>Email<input id="loginEmail" type="email" autocomplete="username"></label><label>Password<input id="loginPassword" type="password" autocomplete="current-password"></label><button id="loginSubmit" class="btn primary full">Login</button><p id="loginError" class="error"></p></div></div>
+<div id="memberModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="memberModal">×</button><p class="eyebrow">ADMIN</p><h2 id="memberModalTitle">Add Member</h2><input id="memberId" type="hidden"><label>Name<input id="memberName" placeholder="Member name"></label><label>Group<select id="memberGroup"><option value="Boys">Boys</option><option value="Girls">Girls</option></select></label><label>Expected Contribution<input id="memberExpected" type="number" min="0"></label><label>Paid Amount<input id="memberPaid" type="number" min="0"></label><div class="modal-actions"><button class="btn" data-close="memberModal">Cancel</button><button id="saveMemberBtn" class="btn primary">Save</button></div></div></div>
+<div id="expenseModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="expenseModal">×</button><p class="eyebrow">ADMIN</p><h2>Add Expense</h2><label>Expense name<input id="expenseName" placeholder="Resort"></label><label>Amount<input id="expenseAmount" type="number" min="0"></label><label>Note<input id="expenseNote" placeholder="Optional"></label><div class="modal-actions"><button class="btn" data-close="expenseModal">Cancel</button><button id="saveExpenseBtn" class="btn primary">Save</button></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script>
+</body></html>
