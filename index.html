@@ -28,16 +28,16 @@
     </div>
     <div class="hero-actions"><button class="btn" id="refreshBtn">↻ Refresh</button><button class="btn" id="shareBtn">Share</button><button class="btn" id="printBtn">Print / PDF</button></div>
   </section>
-  <section class="cards admin-only hidden" id="summaryCards"></section>
-  <section class="panel admin-only hidden" id="membersPanel">
+  <section class="cards" id="summaryCards"></section>
+  <section class="panel">
     <div class="panel-head"><div><h2>Members & Contributions</h2><p class="muted">Read-only for normal visitors.</p></div>
-      <div class="controls"><input id="memberSearch" placeholder="Search member…"><select id="statusFilter"><option value="all">All</option><option value="full">Fully Paid</option><option value="partial">Partial</option><option value="unpaid">Unpaid</option></select><button id="quickContributionBtn" class="btn primary admin-only hidden">+ Add Contribution</button><button id="addMemberBtn" class="btn admin-only hidden">+ Add Member</button></div>
+      <div class="controls"><input id="memberSearch" placeholder="Search member…"><select id="statusFilter"><option value="all">All</option><option value="full">Fully Paid</option><option value="partial">Partial</option><option value="unpaid">Unpaid</option></select><button id="quickContributionBtn" class="btn primary">+ Add Contribution</button><button id="addMemberBtn" class="btn admin-only hidden">+ Add Member</button></div>
     </div>
     <div class="table-wrap"><table><thead><tr><th>#</th><th>Name</th><th>Group</th><th>Expected</th><th>Paid</th><th>Pending</th><th>Status</th></tr></thead><tbody id="membersBody"></tbody></table></div>
   </section>
   <section class="grid2">
     <div class="panel"><div class="panel-head"><div><h2>Expenses</h2><p class="muted">Trip costs recorded by the admin.</p></div><button id="addExpenseBtn" class="btn primary admin-only hidden">+ Add Expense</button></div><div id="expensesList"></div></div>
-    <div class="panel admin-only hidden"><h2>Collection Progress</h2><div class="progress-box"><div class="progress-label"><span>Received</span><strong id="progressText">0%</strong></div><div class="progress"><span id="progressBar"></span></div><div class="stats-line"><span>Total expected</span><strong id="expectedText">₹0</strong></div><div class="stats-line"><span>Received</span><strong id="receivedText">₹0</strong></div><div class="stats-line"><span>Pending</span><strong id="pendingText">₹0</strong></div><div class="stats-line"><span>Expenses</span><strong id="expenseText">₹0</strong></div><div class="stats-line"><span>Balance after expenses</span><strong id="balanceText">₹0</strong></div></div></div>
+    <div class="panel"><h2>Collection Progress</h2><div class="progress-box"><div class="progress-label"><span>Received</span><strong id="progressText">0%</strong></div><div class="progress"><span id="progressBar"></span></div><div class="stats-line"><span>Total expected</span><strong id="expectedText">₹0</strong></div><div class="stats-line"><span>Received</span><strong id="receivedText">₹0</strong></div><div class="stats-line"><span>Pending</span><strong id="pendingText">₹0</strong></div><div class="stats-line"><span>Expenses</span><strong id="expenseText">₹0</strong></div><div class="stats-line"><span>Balance after expenses</span><strong id="balanceText">₹0</strong></div></div></div>
   </section>
 </main>
 <div id="toast" class="toast"></div>
