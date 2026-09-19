@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mangalore Trip Expense Manager</title>
+<title>THUMBE RIVER RESORT • Expense Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
   <section class="hero">
     <div>
       <p class="eyebrow">GROUP TRIP • LIVE DASHBOARD</p>
-      <h1>Mangalore Trip</h1>
+      <h1>THUMBE RIVER RESORT</h1>
       <p>1 October → 2 October</p>
       <p class="muted">Everyone can view the latest information. Only the admin can change members, payments and expenses.</p>
     </div>
@@ -31,7 +31,7 @@
   <section class="cards" id="summaryCards"></section>
   <section class="panel">
     <div class="panel-head"><div><h2>Members & Contributions</h2><p class="muted">Read-only for normal visitors.</p></div>
-      <div class="controls"><input id="memberSearch" placeholder="Search member…"><select id="statusFilter"><option value="all">All</option><option value="full">Fully Paid</option><option value="partial">Partial</option><option value="unpaid">Unpaid</option></select><button id="addMemberBtn" class="btn primary admin-only hidden">+ Add Member</button></div>
+      <div class="controls"><input id="memberSearch" placeholder="Search member…"><select id="statusFilter"><option value="all">All</option><option value="full">Fully Paid</option><option value="partial">Partial</option><option value="unpaid">Unpaid</option></select><button id="quickContributionBtn" class="btn primary admin-only hidden">+ Add Contribution</button><button id="addMemberBtn" class="btn admin-only hidden">+ Add Member</button></div>
     </div>
     <div class="table-wrap"><table><thead><tr><th>#</th><th>Name</th><th>Group</th><th>Expected</th><th>Paid</th><th>Pending</th><th>Status</th><th class="admin-col">Actions</th></tr></thead><tbody id="membersBody"></tbody></table></div>
   </section>
@@ -42,7 +42,7 @@
 </main>
 <div id="toast" class="toast"></div>
 <div id="loginModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="loginModal">×</button><p class="eyebrow">ADMIN ONLY</p><h2>Admin Login</h2><p class="muted">Normal users do not need to log in. Admin login is required for all changes.</p><label>Email<input id="loginEmail" type="email" autocomplete="username"></label><label>Password<input id="loginPassword" type="password" autocomplete="current-password"></label><button id="loginSubmit" class="btn primary full">Login</button><p id="loginError" class="error"></p></div></div>
-<div id="memberModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="memberModal">×</button><p class="eyebrow">ADMIN</p><h2 id="memberModalTitle">Add Member</h2><input id="memberId" type="hidden"><label>Name<input id="memberName" placeholder="Member name"></label><label>Group<select id="memberGroup"><option value="Boys">Boys</option><option value="Girls">Girls</option></select></label><label>Expected Contribution<input id="memberExpected" type="number" min="0"></label><label>Paid Amount<input id="memberPaid" type="number" min="0"></label><div class="modal-actions"><button class="btn" data-close="memberModal">Cancel</button><button id="saveMemberBtn" class="btn primary">Save</button></div></div></div>
+<div id="contributionModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="contributionModal">×</button><p class="eyebrow">ADMIN</p><h2>Add Existing Contribution</h2><p class="muted">Choose an existing member and enter the amount they have paid.</p><label>Member Name<input id="contributionName" list="memberSuggestions" placeholder="Start typing a name" autocomplete="off"><datalist id="memberSuggestions"></datalist></label><label>Paid Amount<input id="contributionPaid" type="number" min="0" placeholder="e.g. 1000"></label><div class="modal-actions"><button class="btn" data-close="contributionModal">Cancel</button><button id="saveContributionBtn" class="btn primary">Save Contribution</button></div></div></div><div id="memberModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="memberModal">×</button><p class="eyebrow">ADMIN</p><h2 id="memberModalTitle">Add Member</h2><input id="memberId" type="hidden"><label>Name<input id="memberName" placeholder="Member name"></label><label>Group<select id="memberGroup"><option value="Boys">Boys</option><option value="Girls">Girls</option></select></label><label>Expected Contribution<input id="memberExpected" type="number" min="0"></label><label>Paid Amount<input id="memberPaid" type="number" min="0"></label><div class="modal-actions"><button class="btn" data-close="memberModal">Cancel</button><button id="saveMemberBtn" class="btn primary">Save</button></div></div></div>
 <div id="expenseModal" class="modal hidden"><div class="modal-card"><button class="modal-close" data-close="expenseModal">×</button><p class="eyebrow">ADMIN</p><h2>Add Expense</h2><label>Expense name<input id="expenseName" placeholder="Resort"></label><label>Amount<input id="expenseAmount" type="number" min="0"></label><label>Note<input id="expenseNote" placeholder="Optional"></label><div class="modal-actions"><button class="btn" data-close="expenseModal">Cancel</button><button id="saveExpenseBtn" class="btn primary">Save</button></div></div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script>
 </body></html>
