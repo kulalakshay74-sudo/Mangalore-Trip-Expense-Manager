@@ -28,3 +28,9 @@ drop policy if exists "Anyone can view ingredients" on public.trip_ingredients; 
 drop policy if exists "Anyone can add ingredients" on public.trip_ingredients; create policy "Anyone can add ingredients" on public.trip_ingredients for insert to anon,authenticated with check(quantity>0 and length(trim(item_name))>0);
 drop policy if exists "Anyone can update ingredients" on public.trip_ingredients; create policy "Anyone can update ingredients" on public.trip_ingredients for update to anon,authenticated using(true) with check(quantity>0 and length(trim(item_name))>0);
 drop policy if exists "Anyone can remove ingredients" on public.trip_ingredients; create policy "Anyone can remove ingredients" on public.trip_ingredients for delete to anon,authenticated using(true);
+
+
+-- Unit support for checklist items.
+alter table public.trip_ingredients add column if not exists unit text not null default 'quantity';
+alter table public.trip_ingredients drop constraint if exists trip_ingredients_unit_check;
+alter table public.trip_ingredients add constraint trip_ingredients_unit_check check(unit in ('kg','liter','quantity'));
