@@ -20,3 +20,11 @@ insert into public.trip_members(name,group_name,expected,paid) select * from (va
 insert into public.trip_expenses(name,amount,note) select 'Resort',9500,'Preloaded trip expense' where not exists(select 1 from public.trip_expenses);
 -- After creating your admin Auth user, replace ADMIN_AUTH_USER_UUID below with that user's UUID and run this line:
 -- insert into public.admin_users(user_id) values ('ADMIN_AUTH_USER_UUID') on conflict do nothing;
+
+-- Collaborative trip ingredient checklist: public read/write, protected by RLS.
+create table if not exists public.trip_ingredients(id uuid primary key default gen_random_uuid(),item_name text not null,quantity integer not null default 1 check(quantity>0),done boolean not null default false,created_at timestamptz not null default now());
+alter table public.trip_ingredients enable row level security;
+drop policy if exists "Anyone can view ingredients" on public.trip_ingredients; create policy "Anyone can view ingredients" on public.trip_ingredients for select to anon,authenticated using(true);
+drop policy if exists "Anyone can add ingredients" on public.trip_ingredients; create policy "Anyone can add ingredients" on public.trip_ingredients for insert to anon,authenticated with check(quantity>0 and length(trim(item_name))>0);
+drop policy if exists "Anyone can update ingredients" on public.trip_ingredients; create policy "Anyone can update ingredients" on public.trip_ingredients for update to anon,authenticated using(true) with check(quantity>0 and length(trim(item_name))>0);
+drop policy if exists "Anyone can remove ingredients" on public.trip_ingredients; create policy "Anyone can remove ingredients" on public.trip_ingredients for delete to anon,authenticated using(true);
