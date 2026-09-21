@@ -33,4 +33,4 @@ drop policy if exists "Anyone can remove ingredients" on public.trip_ingredients
 -- Unit support for checklist items.
 alter table public.trip_ingredients add column if not exists unit text not null default 'quantity';
 alter table public.trip_ingredients drop constraint if exists trip_ingredients_unit_check;
-alter table public.trip_ingredients add constraint trip_ingredients_unit_check check(unit in ('kg','liter','quantity'));
+alter table public.trip_ingredients add constraint trip_ingredients_unit_check check(unit in ('kg','gram','liter','quantity'));
